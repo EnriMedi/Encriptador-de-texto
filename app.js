@@ -31,7 +31,7 @@ function mostrarResultado(resultado) {
 
   // Ocultar la imagen y el texto de nota
   document.querySelector(".output-image").style.display = "none";
-  document.querySelector(".nota").style.display = "none"; 
+  document.querySelector(".nota").style.display = "none";
 }
 
 function encriptarTexto() {
@@ -43,9 +43,11 @@ function encriptarTexto() {
     return; // Detener la ejecución si el campo está vacío
   }
 
-  // Validar que el texto original solo contenga letras minúsculas con expresion regular 
+  // Validar que el texto original solo contenga letras minúsculas con expresion regular
   if (!/^[a-z]+$/.test(textoOriginal)) {
-    alert("El texto ingresado debe contener solo letras minúsculas y sin acentos.");
+    alert(
+      "El texto ingresado debe contener solo letras minúsculas y sin acentos."
+    );
     // Borrar el texto ingresado y restablecer el placeholder
     document.getElementById("inputTexto").value = ""; // Borra el contenido del campo de entrada
     document.getElementById("inputTexto").placeholder = "Ingrese el texto aquí"; // Restablece el placeholder
@@ -76,11 +78,22 @@ function desencriptarTexto() {
   let textoEncriptado = document
     .getElementById("inputTexto")
     .value.toLowerCase();
-    let textoDesencriptado = desencriptar(textoEncriptado);
+  let textoDesencriptado = desencriptar(textoEncriptado);
+
   // Verificar que hay texto en el campo de entrada
   if (textoEncriptado.trim() === "") {
     alert("No hay texto para desencriptar .");
     return; // Detener la ejecución si el campo está vacío
+  }
+  // Verificar si el texto contiene alguna secuencia encriptada
+  if (!/ufat|ober|ai|imes|enter/.test(textoEncriptado)) {
+    alert(
+      "No se puede desencriptar el texto. No contiene secuencias encriptadas."
+    );
+    // Borrar el texto ingresado y restablecer el placeholder
+    document.getElementById("inputTexto").value = ""; // Borra el contenido del campo de entrada
+    document.getElementById("inputTexto").placeholder = "Ingrese el texto aquí"; // Restablece el placeholder
+    return textoEncriptado;
   }
 
   mostrarResultado(textoDesencriptado);
