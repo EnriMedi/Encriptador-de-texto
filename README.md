@@ -1,3 +1,7 @@
+## Autor
+
+Este proyecto fue desarrollado por Enrique Medina Posadas.
+
 # Encriptador de texto Alura
 
 ## Descripción
